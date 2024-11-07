@@ -139,13 +139,12 @@ export default function Home() {
   const runRoute = async () => {
     const canvas = canvasRef.current;
     if (canvas) {
-      const response = await axios.post(
-        `${import.meta.env.VITE_API_URL}/calculate`,
-        {
-          image: canvas.toDataURL("image/png"),
-          dict_of_vars: dictOfVars,
-        }
-      );
+      const url = import.meta.env.VITE_API_URL;
+      console.log(url);
+      const response = await axios.post(`${url}/calculate`, {
+        image: canvas.toDataURL("image/png"),
+        dict_of_vars: dictOfVars,
+      });
 
       const resp = await response.data;
       resp.data.forEach((data: Response) => {
